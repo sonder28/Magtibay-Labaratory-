@@ -1,11 +1,116 @@
-public class TestVehicle{
-    public static void main(String [] args){
-        private String brand;
-        private Double speed;
-        private String FuelType;
+import java.util.Scanner;
 
-        public class Vehicle{
-           
+public class TestVehicle {
+    private String brand;
+    private int speed;
+    private String FuelType;
+
+    public TestVehicle(String brand, int speed, String FuelType) {
+        this.brand = brand;
+        this.speed = speed;
+        this.FuelType = FuelType;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public String getFuelType() {
+        return FuelType;
+    }
+
+    public void displayinfo() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Speed: " + speed + " km/h");
+        System.out.println("Fuel Type: " + FuelType);
+    }
+
+    class Car extends TestVehicle {
+        private int numDoors;
+
+        public Car(String brand, int speed, String FuelType, int numDoors) {
+            super(brand, speed, FuelType);
+            this.numDoors = numDoors;
         }
 
+        public int getNumDoors() {
+            return numDoors;
+        }
 
+        @Override
+        public void displayinfo() {
+            super.displayinfo();
+            System.out.println("Number of Doors: " + numDoors);
+        }
+    }
+
+    class Motorcycle extends TestVehicle {
+        private String hasSidecar;
+
+        public Motorcycle(String brand, int speed, String FuelType, String sideCar) {
+            super(brand, speed, FuelType);
+            this.hasSidecar = sideCar;
+        }
+
+        public String getSideCar() {
+            return hasSidecar;
+        }
+
+        @Override
+        public void displayinfo() {
+            super.displayinfo();
+            System.out.println("Does it have a sidecar? " + hasSidecar);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter C for car or M for Motorcycle:");
+        String vehicleType = sc.nextLine();
+
+        if (vehicleType.equalsIgnoreCase("C")) {
+            System.out.println("Enter the brand of the car:");
+            String brand = sc.nextLine();
+
+            System.out.println("Enter the speed of the car:");
+            int speed = sc.nextInt();
+            sc.nextLine(); // Consume newline
+
+            System.out.println("Enter the fuel type of the car:");
+            String fuelType = sc.nextLine();
+
+            System.out.println("Enter the number of doors in the car:");
+            int numDoors = sc.nextInt();
+
+            TestVehicle outer = new TestVehicle("", 0, ""); // Create an instance of the outer class
+            Car car = outer.new Car(brand, speed, fuelType, numDoors); // Create an instance of the inner class
+            car.displayinfo();
+
+        } else if (vehicleType.equalsIgnoreCase("M")) {
+            System.out.println("Enter the brand of the motorcycle:");
+            String brand = sc.nextLine();
+
+            System.out.println("Enter the speed of the motorcycle:");
+            int speed = sc.nextInt();
+            sc.nextLine(); // Consume newline
+
+            System.out.println("Enter the fuel type of the motorcycle:");
+            String fuelType = sc.nextLine();
+
+            System.out.println("Does it have a sidecar? yes/no:");
+            String hasSidecar = sc.nextLine();
+
+            TestVehicle outer = new TestVehicle("", 0, ""); // Create an instance of the outer class
+            Motorcycle motorcycle = outer.new Motorcycle(brand, speed, fuelType, hasSidecar); // Create an instance of the inner class
+            motorcycle.displayinfo();
+
+        } else {
+            System.out.println("Invalid vehicle type entered.");
+        }
+    }
+}
