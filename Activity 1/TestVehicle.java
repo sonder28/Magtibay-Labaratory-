@@ -79,7 +79,7 @@ public class TestVehicle {
 
             System.out.println("Enter the speed of the car:");
             int speed = sc.nextInt();
-            sc.nextLine(); // Consume newline
+            sc.nextLine(); 
 
             System.out.println("Enter the fuel type of the car:");
             String fuelType = sc.nextLine();
@@ -87,30 +87,38 @@ public class TestVehicle {
             System.out.println("Enter the number of doors in the car:");
             int numDoors = sc.nextInt();
 
-            TestVehicle outer = new TestVehicle("", 0, ""); // Create an instance of the outer class
-            Car car = outer.new Car(brand, speed, fuelType, numDoors); // Create an instance of the inner class
+            TestVehicle outer = new TestVehicle(brand, speed, fuelType);
+            Car car = outer.new Car(brand, speed, fuelType, numDoors); 
             car.displayinfo();
 
         } else if (vehicleType.equalsIgnoreCase("M")) {
             System.out.println("Enter the brand of the motorcycle:");
             String brand = sc.nextLine();
-
+            
             System.out.println("Enter the speed of the motorcycle:");
             int speed = sc.nextInt();
-            sc.nextLine(); // Consume newline
-
+            sc.nextLine(); 
+            
             System.out.println("Enter the fuel type of the motorcycle:");
             String fuelType = sc.nextLine();
-
+            
             System.out.println("Does it have a sidecar? yes/no:");
             String hasSidecar = sc.nextLine();
-
-            TestVehicle outer = new TestVehicle("", 0, ""); // Create an instance of the outer class
-            Motorcycle motorcycle = outer.new Motorcycle(brand, speed, fuelType, hasSidecar); // Create an instance of the inner class
+            
+            TestVehicle outer = new TestVehicle(brand, speed, fuelType);
+            Motorcycle motorcycle = outer.new Motorcycle(brand, speed, fuelType, hasSidecar);
             motorcycle.displayinfo();
 
         } else {
             System.out.println("Invalid vehicle type entered.");
         }
+        String input;
+        do{
+        System.out.println("Do you want to continue? (yes/no):");
+         input = sc.nextLine();
+
+       } while(!input.equalsIgnoreCase("no"));
+       System.out.println("Exiting the program.");
+       sc.close();
     }
-}
+}   
