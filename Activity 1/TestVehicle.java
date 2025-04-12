@@ -69,7 +69,8 @@ public class TestVehicle {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String inp = ""; // Initialize inp to an empty string
+        String inp = "";
+        System.out.println("Welcome to the Vehicle Information System!"); 
 
         do {
             System.out.println("Enter C for car or M for Motorcycle:");
@@ -81,14 +82,14 @@ public class TestVehicle {
 
                 System.out.println("Enter the speed of the car:");
                 int speed = sc.nextInt();
-                sc.nextLine(); // Consume newline
+                sc.nextLine(); 
 
                 System.out.println("Enter the fuel type of the car:");
                 String fuelType = sc.nextLine();
 
                 System.out.println("Enter the number of doors in the car:");
                 int numDoors = sc.nextInt();
-                sc.nextLine(); // Consume newline
+                sc.nextLine(); 
 
                 TestVehicle outer = new TestVehicle(brand, speed, fuelType);
                 Car car = outer.new Car(brand, speed, fuelType, numDoors);
@@ -100,7 +101,7 @@ public class TestVehicle {
 
                 System.out.println("Enter the speed of the motorcycle:");
                 int speed = sc.nextInt();
-                sc.nextLine(); // Consume newline
+                sc.nextLine(); 
 
                 System.out.println("Enter the fuel type of the motorcycle:");
                 String fuelType = sc.nextLine();
@@ -117,7 +118,7 @@ public class TestVehicle {
             }
 
             System.out.println("Do you want to continue? (yes/no):");
-            inp = sc.nextLine(); // Update inp with user input
+            inp = sc.nextLine(); 
         } while (!inp.equalsIgnoreCase("no"));
 
         System.out.println("Exiting the program.");
